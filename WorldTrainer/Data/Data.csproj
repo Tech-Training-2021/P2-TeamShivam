@@ -50,13 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\Trainer.cs" />
     <Compile Include="Entities\Trainer_Details.cs" />
     <Compile Include="Entities\worldtrainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\TrainerRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

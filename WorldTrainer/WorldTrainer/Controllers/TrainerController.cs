@@ -7,5 +7,6 @@ namespace WorldTrainer.Controllers
 {
     public class TrainerController
     {
+
     }
 }
