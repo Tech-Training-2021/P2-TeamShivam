@@ -89,6 +89,11 @@ namespace WorldTrainer.Controllers
         public IActionResult Display()
         {
             var id = HttpContext.Session.GetString(TrainerId);
+            if (id == null)
+            {
+                return RedirectToAction("Login", "Trainer");
+            }
+
             int Uid = Convert.ToInt32(id);
             ViewBag.experience = repo.GetExp(Uid);
             ViewBag.qualification = repo.GetQualification(Uid);
@@ -100,23 +105,24 @@ namespace WorldTrainer.Controllers
         // GET: TrainerController/Edit/5
         public ActionResult Edit(int id)
         {
+
             return View();
         }
 
         // POST: TrainerController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: TrainerController/Delete/5
         public ActionResult Delete(int id)
@@ -125,19 +131,19 @@ namespace WorldTrainer.Controllers
         }
 
         // POST: TrainerController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
         [HttpGet]
         public IActionResult EditTrainer(int id)
         {
@@ -182,6 +188,11 @@ namespace WorldTrainer.Controllers
 
         public IActionResult Logout()
         {
+            var id = HttpContext.Session.GetString(TrainerId);
+            if (id == null)
+            {
+                return RedirectToAction("Login", "Trainer");
+            }
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
