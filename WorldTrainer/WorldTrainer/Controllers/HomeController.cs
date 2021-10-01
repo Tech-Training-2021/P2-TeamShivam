@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,24 @@ namespace WorldTrainer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        ITrainerRepo repo;
+
+        public HomeController(ITrainerRepo _repo)
         {
-            _logger = logger;
+            repo = _repo;
         }
+
+        //private readonly ILogger<HomeController> _logger;
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
-            return View();
+            return View(Mapper.Map(repo.GetTrainer()));
         }
 
         public IActionResult Privacy()

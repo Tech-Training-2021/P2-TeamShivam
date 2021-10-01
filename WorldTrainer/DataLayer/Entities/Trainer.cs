@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldTrainer.Models
+namespace DataLayer.Entities
 {
+    [Table("tb_trainer")]
     public class Trainer
     {
         public int Id { get; set; }
@@ -17,10 +20,12 @@ namespace WorldTrainer.Models
 
         public string Email { get; set; }
 
-        public int? Age { get; set; }
+        public int Age { get; set; }
 
         public string Gender { get; set; }
 
         public string Contact { get; set; }
+
+        public ICollection<Skill> Skill { get; set; }
     }
 }

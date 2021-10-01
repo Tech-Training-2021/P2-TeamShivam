@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore;
+using DataLayer.Repositories;
 
 namespace WorldTrainer
 {
@@ -24,6 +27,10 @@ namespace WorldTrainer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<TrainerContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("WorldTrainer2")));
+            services.AddScoped<ITrainerRepo, TrainerRepo>();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,12 +52,12 @@ namespace WorldTrainer
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Trainer}/{action=Create}/{id?}");
             });
         }
     }

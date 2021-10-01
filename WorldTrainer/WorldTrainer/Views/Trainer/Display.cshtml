@@ -1,0 +1,69 @@
+﻿@model WorldTrainer.Models.TrainerModel
+
+@{
+    ViewData["Title"] = "Display";
+}
+
+<div>
+    <h4>Trainer Profile </h4>
+    <a class="btn btn-danger" asp-area="" asp-controller="Trainer" asp-action="Logout">Logout</a> 
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+        <dt class="col-sm-2">
+           Experience:
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.experience
+        </dd>
+        <dt class="col-sm-2">
+            Qualification:
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.qualification
+        </dd>
+        <dd class="col-sm-10">
+                <span><b>Skills</b></span>
+                <ul>
+                    @foreach (var i in Model.skill)
+                    {
+                        <li>@i.skill</li>
+                    }
+
+                </ul>
+                <a asp-action="AddSkill" asp-controller="Trainer">Add Skill</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditTrainer", new { id = Model.id},new { @class = "btn btn-primary" })
+</div>
